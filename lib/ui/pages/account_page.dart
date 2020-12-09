@@ -21,13 +21,15 @@ class _AccountPageState extends State<AccountPage> {
             child: Align(
                 alignment: Alignment.bottomCenter,
                 child: RaisedButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
                   onPressed: () {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text("Signout Confirmation"),
-                            content: Text("Are you sure to signout?"),
+                            title: Text("Sign Out Confirmation"),
+                            content: Text("Do you want to sign out?"),
                             actions: [
                               FlatButton(
                                 onPressed: () async {
