@@ -49,4 +49,24 @@ class ProductServices {
       return false;
     }
   }
+
+  //updateProduct
+  static Future<bool> updateProduct(Products product) async {
+    await productCollection.doc(product.id).update({
+      'name': product.name,
+      'price': product.price,
+    });
+
+    return true;
+  }
+
+  static Future<bool> deleteProduct(Products product) async {
+    ref = FirebaseStorage.instance.ref().child("images");
+
+    await ref.child(product.id + ".png").delete();
+
+    await productCollection.doc(product.id).delete();
+
+    return true;
+  }
 }

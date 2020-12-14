@@ -106,7 +106,6 @@ class _SignInPageState extends State<SignInPage> {
                           style: TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              print(Text("coba"));
                               Navigator.pushReplacement(this.context,
                                   MaterialPageRoute(builder: (context) {
                                 return SignUpPage();

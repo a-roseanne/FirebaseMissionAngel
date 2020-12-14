@@ -2,7 +2,10 @@ part of 'services.dart';
 
 class AuthServices {
   static FirebaseAuth auth = FirebaseAuth.instance;
+  static Reference ref;
+  static UploadTask uploadTask;
 
+  static String imgUrl;
   // <void> jika tidak mengembalikan nilai
   static Future<String> signUp(
       String email, String password, String name) async {
@@ -41,5 +44,18 @@ class AuthServices {
     bool result = false;
     await auth.signOut().whenComplete(() => result = true);
     return result;
+  }
+
+  static Future<String> uploadImage(File imageFile) async {
+    String fileName = basename(imageFile.path);
+
+    Reference ref = FirebaseStorage.instance.ref().child(fileName);
+
+    uploadTask = ref.putFile(File(imageFile.path));
+
+    await uploadTask.whenComplete(() => ref.getDownloadURL().then(
+          (value) => imgUrl = value,
+        ));
+    return imgUrl;
   }
 }

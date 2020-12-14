@@ -8,6 +8,7 @@ class DataPage extends StatefulWidget {
 class _DataPageState extends State<DataPage> {
   CollectionReference productCollection =
       FirebaseFirestore.instance.collection("products");
+  var formatter = NumberFormat('#,##,000');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
